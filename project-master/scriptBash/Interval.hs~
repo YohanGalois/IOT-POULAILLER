@@ -1,0 +1,11 @@
+echo $(curl -s -XPOST "http://localhost:9200/"$1"/_search" -H 'Content-Type: application/json' -d'  {
+    "query": {
+        "range" : {
+            "'$2'" : {
+                "gte" : '$3',
+                "lte" : '$4'
+            }
+        }
+    }
+}') | jq '.hits'
+
